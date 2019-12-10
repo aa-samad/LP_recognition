@@ -8,7 +8,7 @@ import numpy as np
 
 def f(x):
     print("module:1 - img:{}".format(x[1]))
-    os.system("python3 detect.py {} CRAFT-pytorch/data/{}.png".format(x[0], x[1]))
+    os.system("python3 detect.py {} OCD/data/{}.png".format(x[0], x[1]))
 
 
 def f2(x):
@@ -26,25 +26,25 @@ if __name__ == '__main__':
     imgs = [addr for i, addr in enumerate(a) if i > 0 and i % 2 == 0]
 
     # ---- module1 plate detection
-    if os.path.exists('CRAFT-pytorch/data/'):
-        shutil.rmtree('CRAFT-pytorch/data/')
-        os.mkdir('CRAFT-pytorch/data/')
+    if os.path.exists('OCD/data/'):
+        shutil.rmtree('OCD/data/')
+        os.mkdir('OCD/data/')
     p = Pool(8)
     jobs = zip(imgs, list(range(1, len(imgs) + 1)))
     p.map(f, jobs)
 
     # ---- module2 OCR detection
     print("module:2 running...")
-    if os.path.exists('CRAFT-pytorch/result/'):
-        shutil.rmtree('CRAFT-pytorch/result/')
-    os.mkdir('CRAFT-pytorch/result/')
-    if os.path.exists('CRAFT-pytorch/plates/'):
-        shutil.rmtree('CRAFT-pytorch/plates/')
-    os.mkdir('CRAFT-pytorch/plates/')
-    if os.path.exists('CRAFT-pytorch/heat_maps/'):
-        shutil.rmtree('CRAFT-pytorch/heat_maps/')
-    os.mkdir('CRAFT-pytorch/heat_maps/')
-    os.chdir("CRAFT-pytorch/")
+    if os.path.exists('OCD/result/'):
+        shutil.rmtree('OCD/result/')
+    os.mkdir('OCD/result/')
+    if os.path.exists('OCD/plates/'):
+        shutil.rmtree('OCD/plates/')
+    os.mkdir('OCD/plates/')
+    if os.path.exists('OCD/heat_maps/'):
+        shutil.rmtree('OCD/heat_maps/')
+    os.mkdir('OCD/heat_maps/')
+    os.chdir("OCD/")
     os.system("python3 test.py")
 
     # ---- module3 post-process and OCR
