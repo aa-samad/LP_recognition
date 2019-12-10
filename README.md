@@ -1,1 +1,1 @@
-# LP_recognition
+# Licence plate recognition (for iranian plates for now!)
