@@ -38,7 +38,7 @@ for detection in cvOut[0, 0, :, :]:
         bottom = int(detection[6] * rows)
         area = (bottom - top) * (right - left)
         # --- detect of bounding box has some ratio and bigger area than others
-        if 0.15 < (bottom - top) / (right - left) < 0.35 and area > max_area:
+        if 0.15 < (bottom - top) / (right - left) < 0.35:
             max_area = area
             # --- if box was outside of image
             left = 0 if left < 0 else left
@@ -55,11 +55,11 @@ for detection in cvOut[0, 0, :, :]:
             cv.imwrite(sys.argv[2], img[top:bottom, left:right])
             # print("left:{} top:{} right:{} bottom:{}".format(left,top,right,bottom))
 
-#             cv.rectangle(img, (int(left), int(top)), (int(right), int(bottom)), (23, 230, 210), thickness=2)
+            cv.rectangle(img, (int(left), int(top)), (int(right), int(bottom)), (23, 230, 210), thickness=2)
 #             left = left - 15 if left - 15 > 15 else left + 15
 #             top = top - 5
 #             cv.putText(img, label, (int(left), int(top)),
 #                 cv.FONT_HERSHEY_SIMPLEX, 0.5,(0,255,0), 2)
 
-# cv.imwrite("detected_img.png", img)
+cv.imwrite(sys.argv[2], img)
         

@@ -19,13 +19,16 @@ def f(x):
 if __name__ == '__main__':
     # ---- input files
     t0 = perf_counter()
-    imgs = ['test_set/images/0001.jpg', 'test_set/images/0002.jpg', 'test_set/images/0003.jpg', 'test_set/images/0004.jpg', 'test_set/images/0005.jpg', 
-        'test_set/images/1001.jpg', 'test_set/images/1002.jpg', 'test_set/images/1003.jpg', 'test_set/images/1004.jpg', 'test_set/images/1005.jpg', 
-        'test_set/images/3001.jpg', 'test_set/images/3002.jpg', 'test_set/images/3003.jpg', 'test_set/images/3004.jpg', 'test_set/images/3005.jpg',
-        'test_set/images/4.png', 'test_set/images/5.png', 'test_set/images/6.png','test_set/images/7.jpg', 'test_set/images/8.jpg', 'test_set/images/9.jpg',]
+    a = ['test_set/images/' + addr for addr in os.listdir('test_set/images')]
+    b = ['test_set/Normal_plate_net/' + addr for addr in os.listdir('test_set/Normal_plate_net')]
+    c = ['test_set/siyasi/' + addr for addr in os.listdir('test_set/siyasi/')]
+    d = ['test_set/gozar_movaghat/' + addr for addr in os.listdir('test_set/gozar_movaghat/')]
+    imgs = a + b + c + d
+
     # imgs = [addr for i, addr in enumerate(a) if i > 0 and i % 2 == 0]
 
     # ---- module1 plate detection
+    print("========= module1 =========")
     if os.path.exists('plate_detect/output'):
         shutil.rmtree('plate_detect/output')
         os.mkdir('plate_detect/output')
@@ -36,7 +39,7 @@ if __name__ == '__main__':
     os.chdir('../')
 
     # ---- module2 OCR detection
-    print("module:2 running...")
+    print("========= module2 =========")
     if os.path.exists('OCD/result/'):
         shutil.rmtree('OCD/result/')
     os.mkdir('OCD/result/')
@@ -83,7 +86,7 @@ if __name__ == '__main__':
     # with open('out.txt', 'w') as FILE0:
     #     FILE0.writelines(classes)
 
-    # print("took {:.3f} sec, # images={}".format(perf_counter() - t0, len(imgs)))
-    # print("-----------")
-    # print("output file is in {}".format(os.path.join(os.getcwd(), 'out.txt')))
-    # print("-----------")
+    print("took {:.3f} sec, # images={}".format(perf_counter() - t0, len(imgs)))
+    print("-----------")
+    print("output file is in {}".format(os.path.join(os.getcwd(), 'out.txt')))
+    print("-----------")

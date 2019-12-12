@@ -1,0 +1,7 @@
+# pycharm folder
+.idea/
+
+# created images
+*.jpg
+*.png
+*.jpeg

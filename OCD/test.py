@@ -155,7 +155,7 @@ if __name__ == '__main__':
 
     # load data
     for k, image_path in enumerate(image_list):
-        # print("Test image {:d}/{:d}: {:s}".format(k+1, len(image_list), image_path), end='\r')
+        print("module:2 - img:{}".format(k))
         image = imgproc.loadImage(image_path)
 
         bboxes, polys, score_text = test_net(net, image, args.text_threshold, args.link_threshold, args.low_text, args.cuda, args.poly, refine_net)
@@ -166,5 +166,3 @@ if __name__ == '__main__':
         # cv2.imwrite(mask_file, score_text)
 
         file_utils.saveResult(image_path, image[:,:,::-1], polys, score_text, dirname=result_folder)
-
-    # print("elapsed time : {}s".format(time.time() - t))
