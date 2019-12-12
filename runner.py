@@ -19,9 +19,9 @@ def f(x):
 if __name__ == '__main__':
     # ---- input files
     t0 = perf_counter()
-    imgs = ['test_set/images/1/0001.jpg', 'test_set/images/1/0002.jpg', 'test_set/images/1/0003.jpg', 'test_set/images/1/0004.jpg', 'test_set/images/1/0005.jpg', 
-        'test_set/images/2/0001.jpg', 'test_set/images/2/0002.jpg', 'test_set/images/2/0003.jpg', 'test_set/images/2/0004.jpg', 'test_set/images/2/0005.jpg', 
-        'test_set/images/3/0001.jpg', 'test_set/images/3/0002.jpg', 'test_set/images/3/0003.jpg', 'test_set/images/3/0004.jpg', 'test_set/images/3/0005.jpg',
+    imgs = ['test_set/images/0001.jpg', 'test_set/images/0002.jpg', 'test_set/images/0003.jpg', 'test_set/images/0004.jpg', 'test_set/images/0005.jpg', 
+        'test_set/images/1001.jpg', 'test_set/images/1002.jpg', 'test_set/images/1003.jpg', 'test_set/images/1004.jpg', 'test_set/images/1005.jpg', 
+        'test_set/images/3001.jpg', 'test_set/images/3002.jpg', 'test_set/images/3003.jpg', 'test_set/images/3004.jpg', 'test_set/images/3005.jpg',
         'test_set/images/4.png', 'test_set/images/5.png', 'test_set/images/6.png','test_set/images/7.jpg', 'test_set/images/8.jpg', 'test_set/images/9.jpg',]
     # imgs = [addr for i, addr in enumerate(a) if i > 0 and i % 2 == 0]
 
@@ -47,7 +47,7 @@ if __name__ == '__main__':
         shutil.rmtree('OCD/heat_maps/')
     os.mkdir('OCD/heat_maps/')
     os.chdir("OCD/")
-    os.system("python3 test.py")
+    os.system("python3 test.py --test_folder=../plate_detect/output")
 
     # ---- module3 post-process and OCR
     # f_list = sorted(os.listdir("result"))
