@@ -43,9 +43,9 @@ if __name__ == '__main__':
     if os.path.exists('OCD/result/'):
         shutil.rmtree('OCD/result/')
     os.mkdir('OCD/result/')
-    if os.path.exists('OCD/plates/'):
-        shutil.rmtree('OCD/plates/')
-    os.mkdir('OCD/plates/')
+    # if os.path.exists('OCD/plates/'):
+    #     shutil.rmtree('OCD/plates/')
+    # os.mkdir('OCD/plates/')
     if os.path.exists('OCD/heat_maps/'):
         shutil.rmtree('OCD/heat_maps/')
     os.mkdir('OCD/heat_maps/')

@@ -1,7 +1,5 @@
 # pycharm folder
-.idea/
+.idea/*
 
 # created images
-*.jpg
-*.png
-*.jpeg
+plate_detect/output/*
