@@ -11,9 +11,9 @@ def f(x):
     os.system("python3 detect.py ../{} output/{}.png".format(x[0], x[1]))
 
 
-# def f2(x):
-#     print("module:3 - img:{}".format(x[0]))
-#     os.system("python3 real_plates.py result/{}.jpg heat_maps/{}.jpg".format(x[0], x[1]))
+def f2(x):
+    print("module:3 - img:{}".format(x[0]))
+    os.system("python3 real_plates.py result/{}.jpg heat_maps/{}.jpg".format(x[0], x[1]))
 
 
 if __name__ == '__main__':
