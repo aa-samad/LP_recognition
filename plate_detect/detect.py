@@ -24,8 +24,9 @@ cvNet.setInput(cv.dnn.blobFromImage(img, size=(300, 300), swapRB=True, crop=Fals
 cvOut = cvNet.forward()
 
 # max_score = 0.5
-score_thr = 0.5
+score_thr = 0.2
 max_area = 0
+print(cvOut.shape)
 for detection in cvOut[0, 0, :, :]:
     score = float(detection[2])
     if score > score_thr:
@@ -38,7 +39,7 @@ for detection in cvOut[0, 0, :, :]:
         bottom = int(detection[6] * rows)
         area = (bottom - top) * (right - left)
         # --- detect of bounding box has some ratio and bigger area than others
-        if 0.15 < (bottom - top) / (right - left) < 0.35:
+        if 0.1 < (bottom - top) / (right - left) < 0.4:
             max_area = area
             # --- if box was outside of image
             left = 0 if left < 0 else left

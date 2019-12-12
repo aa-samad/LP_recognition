@@ -40,17 +40,17 @@ if __name__ == '__main__':
 
     # ---- module2 OCR detection
     print("========= module2 =========")
-    if os.path.exists('OCD/result/'):
-        shutil.rmtree('OCD/result/')
-    os.mkdir('OCD/result/')
+    # if os.path.exists('OCD/result/'):
+    #     shutil.rmtree('OCD/result/')
+    # os.mkdir('OCD/result/')
     # if os.path.exists('OCD/plates/'):
     #     shutil.rmtree('OCD/plates/')
     # os.mkdir('OCD/plates/')
-    if os.path.exists('OCD/heat_maps/'):
-        shutil.rmtree('OCD/heat_maps/')
-    os.mkdir('OCD/heat_maps/')
-    os.chdir("OCD/")
-    os.system("python3 test.py --test_folder=../plate_detect/output")
+    # if os.path.exists('OCD/heat_maps/'):
+    #     shutil.rmtree('OCD/heat_maps/')
+    # os.mkdir('OCD/heat_maps/')
+    # os.chdir("OCD/")
+    # os.system("python3 test.py --test_folder=../plate_detect/output")
 
     # ---- module3 post-process and OCR
     # f_list = sorted(os.listdir("result"))
