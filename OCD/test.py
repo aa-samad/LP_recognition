@@ -51,7 +51,6 @@ parser.add_argument('--cuda', default=True, type=str2bool, help='Use cuda for in
 parser.add_argument('--canvas_size', default=1280, type=int, help='image size for inference')
 parser.add_argument('--mag_ratio', default=1.5, type=float, help='image magnification ratio')
 parser.add_argument('--poly', default=False, action='store_true', help='enable polygon type')
-parser.add_argument('--show_time', default=False, action='store_true', help='show processing time')
 parser.add_argument('--test_folder', default='data/', type=str, help='folder path to input images')
 parser.add_argument('--refine', default=True, action='store_true', help='enable link refiner')
 parser.add_argument('--refiner_model', default='weights/craft_refiner_CTW1500.pth', type=str, help='pretrained refiner model')
@@ -66,9 +65,8 @@ result_folder = './result/'
 if not os.path.isdir(result_folder):
     os.mkdir(result_folder)
 
-def test_net(net, image, text_threshold, link_threshold, low_text, cuda, poly, refine_net=None):
-    t0 = time.time()
 
+def test_net(net, image, text_threshold, link_threshold, low_text, cuda, poly, refine_net=None):
     # resize
     img_resized, target_ratio, size_heatmap = imgproc.resize_aspect_ratio(image, args.canvas_size, interpolation=cv2.INTER_LINEAR, mag_ratio=args.mag_ratio)
     ratio_h = ratio_w = 1 / target_ratio
@@ -86,33 +84,25 @@ def test_net(net, image, text_threshold, link_threshold, low_text, cuda, poly, r
     # make score and link map
     score_text = y[0,:,:,0].cpu().data.numpy()
     score_link = y[0,:,:,1].cpu().data.numpy()
-
     # refine link
     if refine_net is not None:
         y_refiner = refine_net(y, feature)
-        score_link = y_refiner[0,:,:,0].cpu().data.numpy()
+        score_link = y_refiner[0, :, :, 0].cpu().data.numpy()
 
-    t0 = time.time() - t0
-    t1 = time.time()
 
     # Post-processing
     boxes, polys = craft_utils.getDetBoxes(score_text, score_link, text_threshold, link_threshold, low_text, poly)
-
     # coordinate adjustment
     boxes = craft_utils.adjustResultCoordinates(boxes, ratio_w, ratio_h)
     polys = craft_utils.adjustResultCoordinates(polys, ratio_w, ratio_h)
     for k in range(len(polys)):
-        if polys[k] is None: polys[k] = boxes[k]
-
-    t1 = time.time() - t1
+        if polys[k] is None:
+            polys[k] = boxes[k]
 
     # render results (optional)
     render_img = score_text.copy()
     # render_img = np.hstack((render_img, score_link))
     ret_score_text = imgproc.cvt2HeatmapImg(render_img)
-
-    if args.show_time:
-        print("\ninfer/postproc time : {:.3f}/{:.3f}".format(t0, t1))
 
     return boxes, polys, ret_score_text
 
@@ -122,7 +112,6 @@ if __name__ == '__main__':
     # load net
     net = CRAFT()     # initialize
 
-    # print('Loading weights from checkpoint (' + args.trained_model + ')')
     if args.cuda:
         net.load_state_dict(copyStateDict(torch.load(args.trained_model)))
     else:
@@ -140,7 +129,6 @@ if __name__ == '__main__':
     if args.refine:
         from refinenet import RefineNet
         refine_net = RefineNet()
-        # print('Loading weights of refiner from checkpoint (' + args.refiner_model + ')')
         if args.cuda:
             refine_net.load_state_dict(copyStateDict(torch.load(args.refiner_model)))
             refine_net = refine_net.cuda()
@@ -150,8 +138,6 @@ if __name__ == '__main__':
 
         refine_net.eval()
         args.poly = True
-
-    t = time.time()
 
     # load data
     for k, image_path in enumerate(image_list):

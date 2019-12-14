@@ -5,6 +5,7 @@ from time import perf_counter
 import shutil
 import plate_detect.detect as detector
 import numpy as np
+import OCR.ocr as ocr
 
 
 def f(imgs):
@@ -29,32 +30,36 @@ if __name__ == '__main__':
     imgs = a + b + c + d
     # ---- module1 plate detection
     print("========= module1 =========")
-    if os.path.exists('plate_detect/output'):
-        shutil.rmtree('plate_detect/output')
-        os.mkdir('plate_detect/output')
-    os.chdir('plate_detect')
-    f(imgs)
-    os.chdir('../')
-    print()
+    # if os.path.exists('plate_detect/output'):
+    #     shutil.rmtree('plate_detect/output')
+    #     os.mkdir('plate_detect/output')
+    # os.chdir('plate_detect')
+    # f(imgs)
+    # os.chdir('../')
+    # print()
     # p = Pool(8)
     # jobs = zip(imgs, list(range(1, len(imgs) + 1)))
     # p.map(f, jobs)
 
     # ---- module2 OCR detection
     print("========= module2 =========")
-    if os.path.exists('OCD/result/'):
-        shutil.rmtree('OCD/result/')
-    os.mkdir('OCD/result/')
-    if os.path.exists('OCD/plates/'):
-        shutil.rmtree('OCD/plates/')
-    os.mkdir('OCD/plates/')
-    if os.path.exists('OCD/heat_maps/'):
-        shutil.rmtree('OCD/heat_maps/')
-    os.mkdir('OCD/heat_maps/')
-    os.chdir("OCD/")
-    os.system("python3 test.py --test_folder=../plate_detect/output")
+    # if os.path.exists('OCD/result/'):
+    #     shutil.rmtree('OCD/result/')
+    # os.mkdir('OCD/result/')
+    # if os.path.exists('OCD/heat_maps/'):
+    #     shutil.rmtree('OCD/heat_maps/')
+    # os.mkdir('OCD/heat_maps/')
+    # os.chdir("OCD/")
+    # os.system("python3 test.py --test_folder=../plate_detect/output")
+    #
+    # os.chdir("../")
 
     # ---- module3 post-process and OCR
+    if os.path.exists('OCR/chars/'):
+        shutil.rmtree('OCR/chars/')
+    os.mkdir('OCR/chars/')
+    os.chdir("OCR")
+    ocr.ocr("../OCD/result/", "../OCD/heat_maps/")
     # f_list = sorted(os.listdir("result"))
     # f_list = sorted([int(f.split(".")[0]) for f in f_list])
     # p = Pool(8)
