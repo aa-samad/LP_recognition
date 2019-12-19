@@ -27,39 +27,36 @@ if __name__ == '__main__':
     b = ['../test_set/Normal_plate_net/' + addr for addr in os.listdir('test_set/Normal_plate_net')]
     c = ['../test_set/siyasi/' + addr for addr in os.listdir('test_set/siyasi/')]
     d = ['../test_set/gozar_movaghat/' + addr for addr in os.listdir('test_set/gozar_movaghat/')]
-    imgs = a + b + c + d
+    e = ['../test_set/IRCP_dataset_1024X768/' + addr for addr in os.listdir('test_set/IRCP_dataset_1024X768/')]
+    imgs = a + b + c + d + e
     # ---- module1 plate detection
     print("========= module1 =========")
-    # if os.path.exists('plate_detect/output'):
-    #     shutil.rmtree('plate_detect/output')
-    #     os.mkdir('plate_detect/output')
-    # os.chdir('plate_detect')
-    # f(imgs)
-    # os.chdir('../')
-    # print()
-    # p = Pool(8)
-    # jobs = zip(imgs, list(range(1, len(imgs) + 1)))
-    # p.map(f, jobs)
+    if os.path.exists('plate_detect/output'):
+        shutil.rmtree('plate_detect/output')
+        os.mkdir('plate_detect/output')
+    os.chdir('plate_detect')
+    f(imgs)
+    os.chdir('../')
 
     # ---- module2 OCR detection
     print("========= module2 =========")
-    # if os.path.exists('OCD/result/'):
-    #     shutil.rmtree('OCD/result/')
-    # os.mkdir('OCD/result/')
-    # if os.path.exists('OCD/heat_maps/'):
-    #     shutil.rmtree('OCD/heat_maps/')
-    # os.mkdir('OCD/heat_maps/')
-    # os.chdir("OCD/")
-    # os.system("python3 test.py --test_folder=../plate_detect/output")
-    #
-    # os.chdir("../")
+    if os.path.exists('OCD/result/'):
+        shutil.rmtree('OCD/result/')
+    os.mkdir('OCD/result/')
+    if os.path.exists('OCD/heat_maps/'):
+        shutil.rmtree('OCD/heat_maps/')
+    os.mkdir('OCD/heat_maps/')
+    os.chdir("OCD/")
+    os.system("python3 test.py --test_folder=../plate_detect/output")
+    
+    os.chdir("../")
 
     # ---- module3 post-process and OCR
-    if os.path.exists('OCR/chars/'):
-        shutil.rmtree('OCR/chars/')
-    os.mkdir('OCR/chars/')
-    os.chdir("OCR")
-    ocr.ocr("../OCD/result/", "../OCD/heat_maps/")
+    # if os.path.exists('OCR/chars/'):
+    #     shutil.rmtree('OCR/chars/')
+    # os.mkdir('OCR/chars/')
+    # os.chdir("OCR")
+    # ocr.ocr("../OCD/result/", "../OCD/heat_maps/")
     # f_list = sorted(os.listdir("result"))
     # f_list = sorted([int(f.split(".")[0]) for f in f_list])
     # p = Pool(8)
@@ -94,6 +91,6 @@ if __name__ == '__main__':
     #     FILE0.writelines(classes)
 
     print("took {:.3f} sec, # images={}".format(perf_counter() - t0, len(imgs)))
-    print("-----------")
-    print("output file is in {}".format(os.path.join(os.getcwd(), 'out.txt')))
-    print("-----------")
+    # print("-----------")
+    # print("output file is in {}".format(os.path.join(os.getcwd(), 'out.txt')))
+    # print("-----------")
