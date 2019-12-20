@@ -1,8 +1,10 @@
 # Modular Licence plate recognition
-Tthis is a framework to develope License plate recognition, currently OCR module is fine-tuned with Iranian Plates, but you can train it yourself.
+This is a framework to develope License plate recognition, currently OCR module is fine-tuned with Iranian Plates, but you can train it yourself.
+
+![img](Demo.png)
 
 ## Prerequisites
-The Following is tested Setup:
+The Following Setup is tested and working:
 - Python>=3.5
 - Pytorch>=0.4.1
 - Tensorflow==1.12.2
