@@ -15,7 +15,7 @@ The Following Setup is tested and working:
 - delete all other images inside folders (don't delete the folders, just files inside them)
 - in main directory run: ```python3 runner.py```
 
-## training
+## Training
 - ...
 
 ## Citing
