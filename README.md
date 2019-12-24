@@ -1,5 +1,5 @@
 # Modular Licence plate recognition
-This is a framework to develope License plate recognition, currently OCR module is fine-tuned with Iranian Plates, but you can train it yourself.
+This is a framework to develop License plate recognition, currently OCR module is fine-tuned with Iranian Plates, but you can train it yourself.
 
 ![img](Demo.png)
 
