@@ -52,22 +52,18 @@ if __name__ == '__main__':
     os.chdir("../")
 
     # ---- module3 post-process and OCR
-    # if os.path.exists('OCR/chars/'):
-    #     shutil.rmtree('OCR/chars/')
-    # os.mkdir('OCR/chars/')
-    # os.chdir("OCR")
-    # ocr.ocr("../OCD/result/", "../OCD/heat_maps/")
-    # f_list = sorted(os.listdir("result"))
-    # f_list = sorted([int(f.split(".")[0]) for f in f_list])
-    # p = Pool(8)
-    # jobs = zip(f_list, f_list)
-    # p.map(f2, jobs)
+    if os.path.exists('OCR/chars/'):
+        shutil.rmtree('OCR/chars/')
+    os.mkdir('OCR/chars/')
+    os.chdir("OCR")
+    ocr.ocr("../OCD/result/", "../OCD/heat_maps/")
+    f_list = sorted(os.listdir("result"))
+    f_list = sorted([int(f.split(".")[0]) for f in f_list])
+    p = Pool(8)
+    jobs = zip(f_list, f_list)
+    p.map(f2, jobs)
 
     # ---- get the results
-    # f_list = sorted(os.listdir("result"))
-    # plates = sorted([int(f.split(".")[0]) for f in f_list])
-    # f_list = sorted(os.listdir("plates"))
-    # true_plates = sorted([int(f.split(".")[0]) for f in f_list])
 
     # os.chdir("../")
     # classes = []
