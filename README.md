@@ -1,7 +1,7 @@
 # RILP
 ### Robust Iranian License Plate Recognition Designed for Complex Conditions
 
-This is a Modular Framework designed for License Plate Number Recognition in Complex Conditions
+This is a Modular Framework designed for License Plate Number Recognition in Complex Conditions.
 The particular Design choice ables us to reconfigure the framework for other regions/Conditions in no time!
 
 ![img](Demo.png)
