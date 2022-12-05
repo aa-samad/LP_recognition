@@ -43,8 +43,7 @@ The Following Setup is tested and working:
 	- Various sizes
 	- License plate number (only one of them) is labeled
 - Link:
-	- Will be avaiable soon, stay tuned.
-
+	- It is only available for research purposes. Please email the first author: a_samad[at]aut[dot]ac[dot]ir
 ## Citing
 Please adequately refer to the papers any time this Work/Dataset is being used. If you do publish a paper where this Work helped your research, Please cite the following papers in your publications.
 
