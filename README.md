@@ -1,6 +1,8 @@
 # RILP
 ### Robust Iranian License Plate Recognition Designed for Complex Conditions
 
+**This Repo is not maintaned anymore, there are issues with the code and the dataset is not available anymore for download. However, please adequately refer to the paper any time this Works method/code is being used.**
+
 This is a Modular Framework designed for License Plate Number Recognition in Complex Conditions.
 The distinct Design ables us to reconfigure the framework for other regions/Conditions in no time!
 
@@ -43,9 +45,9 @@ The Following Setup is tested and working:
 	- Various sizes
 	- License plate number (only one of them) is labeled
 - Link:
-	- It is only available for research purposes. Please email the first author: a_samad[at]aut[dot]ac[dot]ir
+	- It is only available for research purposes. Ask the first author a_samad[at]aut[dot]ac[dot]ir
 ## Citing
-Please adequately refer to the papers any time this Work/Dataset is being used. If you do publish a paper where this Work helped your research, Please cite the following papers in your publications.
+Please adequately refer to the papers any time this Method/Code is being used. If you do publish a paper where this Work helped your research, Please cite the following papers in your publications.
 
 	@inproceedings{Samadzadeh2020RILP,
 	  title={RILP: Robust Iranian License Plate Recognition Designed for Complex Conditions},
